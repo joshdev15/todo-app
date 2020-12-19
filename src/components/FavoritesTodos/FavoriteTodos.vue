@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'TodoList',
+  name: 'FavoritesTodos',
 
   components: {
     TodoCard: () => import('../TodoCard/TodoCard.vue')
@@ -14,7 +14,8 @@ export default {
 
   computed: {
     todos() {
-      return this.$store.getters.allTodos
+      console.log(this.$store.getters.favoriteTodos)
+      return this.$store.getters.favoriteTodos
     }
   }
 }

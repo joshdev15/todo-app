@@ -1,14 +1,14 @@
 <template>
   <v-form class="app-header" @submit.prevent="submit">
     <div class="dinamic-container">
-      <h1 class="blue--text">TODO-APP</h1>
+      <h1 class="blue--text pointer" @click="$goToRoute('/')">TODO-APP</h1>
 
       <div class="mb-1">
         <v-btn small rounded class="blue white--text mr-1">
           Filter
         </v-btn>
 
-        <v-btn small rounded class="yellow">
+        <v-btn small rounded class="yellow" @click="$goToRoute('/favorites')">
           Favorites
         </v-btn>
 
@@ -20,7 +20,7 @@
           small
           rounded
           class="cyan accent-4 white--text ml-1"
-          @click="$goToRoute('about')"
+          @click="$goToRoute('/about')"
         >
           About
         </v-btn>
@@ -84,6 +84,9 @@ export default {
   &:hover,
   &:focus
     border: 2px solid orange
+
+.pointer
+  cursor: pointer !important
 
 @media screen and (max-width: 500px)
   .app-header

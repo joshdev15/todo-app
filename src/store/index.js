@@ -73,6 +73,7 @@ export default new Vuex.Store({
 
   // GETTERS
   getters: {
-    allTodos: state => (state.todos.length === 0 ? null : state.todos)
+    allTodos: state => (state.todos.length === 0 ? null : state.todos),
+    favoriteTodos: state => (state.todos.length === 0 ? null : state.todos.filter(item => item.favorite === true))
   }
 })

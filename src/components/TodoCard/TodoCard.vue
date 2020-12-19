@@ -6,7 +6,7 @@
           {{ info.favorite ? 'mdi-star' : 'mdi-star-outline' }}
         </v-icon>
       </v-btn>
-      {{ info.content }}
+      <span>{{ info.content }}</span>
     </v-card-title>
 
     <v-switch

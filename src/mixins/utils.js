@@ -5,7 +5,9 @@ export default {
 
   methods: {
     $goToRoute(route) {
-      this.$router.push(route)
+      if (this.$route.path !== route) {
+        this.$router.push(route)
+      }
     },
 
     $createTodoObject(content) {

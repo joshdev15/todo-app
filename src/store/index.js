@@ -25,7 +25,7 @@ export default new Vuex.Store({
 
     ADD_NEW_TODO: (state, todo) => {
       state.todos.unshift(todo)
-      updateTodosInMemory()
+      updateTodosInMemory(state)
     },
 
     UPDATE_TODO: (state, infoObj) => {

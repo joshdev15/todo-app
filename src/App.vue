@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ls from './services/localStorage.js'
+import ls from './services/localStorage'
 import 'animate.css'
 
 export default {
@@ -13,9 +13,7 @@ export default {
 
   mounted() {
     const existingTodos = JSON.parse(ls.get('allTodos'))
-    if (existingTodos !== null) {
-      this.$store.dispatch('setExistingTodos')
-    }
+    if (existingTodos !== null) this.$store.dispatch('setExistingTodos')
   }
 }
 </script>
@@ -41,4 +39,7 @@ export default {
 
 #app
   background: #e0ecff
+
+.pointer
+  cursor: pointer !important
 </style>

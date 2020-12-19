@@ -22,7 +22,7 @@ export default {
 
 <style lang="sass" scoped>
 .lista
-  margin-top: 152px
+  margin-top: 166px
 
 .card
   margin-top: 10px

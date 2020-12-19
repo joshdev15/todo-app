@@ -5,9 +5,7 @@ export default {
 
   methods: {
     $goToRoute(route) {
-      if (this.$route.path !== route) {
-        this.$router.push(route)
-      }
+      if (this.$route.path !== route) this.$router.push(route)
     },
 
     $createTodoObject(content) {
@@ -16,7 +14,8 @@ export default {
         date: Date.now(),
         favorite: false,
         done: false,
-        id: uuid()
+        id: uuid(),
+        check: false
       }
     }
   }

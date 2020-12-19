@@ -14,7 +14,6 @@ export default {
 
   computed: {
     todos() {
-      console.log(this.$store.getters.favoriteTodos)
       return this.$store.getters.favoriteTodos
     }
   }

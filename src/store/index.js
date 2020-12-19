@@ -13,7 +13,10 @@ const updateTodosInMemory = state => {
 export default new Vuex.Store({
   // STATE
   state: {
-    todos: []
+    todos: [],
+    checker: false,
+    todoField: true,
+    filter: false
   },
 
   // MUTATIONS
@@ -47,6 +50,27 @@ export default new Vuex.Store({
 
       state.todos = newTodos
       updateTodosInMemory(state)
+    },
+
+    TOGGLE_CHECKER: state => {
+      state.checker = !state.checker
+      if (!state.checker) {
+        state.todos.forEach(item => {
+          item.check = false
+        })
+
+        updateTodosInMemory(state)
+      }
+    },
+
+    TOGGLE_TODO_FIELD: state => {
+      state.todoField = !state.todoField
+    },
+
+    DELETE_BY_GROUP: state => {
+      const newTodoList = state.todos.filter(item => item.check === false)
+      state.todos = newTodoList
+      updateTodosInMemory(state)
     }
   },
 
@@ -68,12 +92,29 @@ export default new Vuex.Store({
 
     deleteTodo: ({ commit }, todoID) => {
       commit('DELETE_TODO', todoID)
+    },
+
+    toggleChecker: ({ commit }) => {
+      commit('TOGGLE_CHECKER')
+    },
+
+    toggleTodoField: ({ commit }) => {
+      commit('TOGGLE_TODO_FIELD')
+    },
+
+    deleteByGroup: ({ commit }) => {
+      commit('DELETE_BY_GROUP')
     }
   },
 
   // GETTERS
   getters: {
     allTodos: state => (state.todos.length === 0 ? null : state.todos),
-    favoriteTodos: state => (state.todos.length === 0 ? null : state.todos.filter(item => item.favorite === true))
+    favoriteTodos: state =>
+      state.todos.length === 0
+        ? null
+        : state.todos.filter(item => item.favorite === true),
+    checkerIsActive: state => state.checker,
+    todoFieldIsActive: state => state.todoField
   }
 })

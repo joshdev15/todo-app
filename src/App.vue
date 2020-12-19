@@ -5,10 +5,18 @@
 </template>
 
 <script>
+import ls from './services/localStorage.js'
 import 'animate.css'
 
 export default {
-  name: 'App'
+  name: 'App',
+
+  mounted() {
+    const existingTodos = JSON.parse(ls.get('allTodos'))
+    if (existingTodos !== null) {
+      this.$store.dispatch('setExistingTodos')
+    }
+  }
 }
 </script>
 
@@ -32,5 +40,5 @@ export default {
   border-radius: 10px
 
 #app
-  background: #f4f4f4
+  background: #e0ecff
 </style>

@@ -14,6 +14,7 @@ export default {
 
   computed: {
     todos() {
+      console.log()
       return this.$store.getters.allTodos
     }
   }

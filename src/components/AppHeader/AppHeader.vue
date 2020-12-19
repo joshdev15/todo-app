@@ -28,13 +28,13 @@
     </div>
 
     <v-text-field
+      v-model="content"
       label="New todo"
       hint="Enter you todo"
-      counter="255"
+      persistent-hint
       clearable
       outlined
-    >
-    </v-text-field>
+    />
   </v-form>
 </template>
 
@@ -42,9 +42,15 @@
 export default {
   name: 'AppHeader',
 
+  data: () => ({
+    content: ''
+  }),
+
   methods: {
     submit() {
-      console.log('funciona')
+      const newTodo = this.$createTodoObject(this.content)
+      this.content = ''
+      this.$store.dispatch('addNewTodo', newTodo)
     }
   }
 }
@@ -53,8 +59,8 @@ export default {
 <style lang="sass" scoped>
 .app-header
   padding: 15px
-  background: #f4f4f490
-  backdrop-filter: blur(10px)
+  background: #ffffff90
+  backdrop-filter: blur(20px)
   font-size: 20px
   position: fixed
   z-index: 100

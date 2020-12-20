@@ -22,7 +22,7 @@
               {{ info.content }}
             </h4>
           </template>
-          <span>Double click to edit todo</span>
+          <span>Double click to edit To Do</span>
         </v-tooltip>
 
         <v-btn icon class="mr-1">
@@ -38,7 +38,7 @@
         class="pb-2"
         v-model="newContent"
         :label="info.content"
-        hint="Edit todo and press enter to save"
+        hint="Edit To Do and press enter to save"
         persistent-hint
         clearable
         outlined
@@ -64,13 +64,15 @@
       @click="changeDone"
     ></v-checkbox>
 
-    <v-card-subtitle class="pa-0 px-4 caption">
-      {{ info.date }}
-    </v-card-subtitle>
+    <v-row justify="space-between pa-0 px-4">
+      <v-card-subtitle class="pa-0 px-4 caption">
+        <span class="green--text">Creation date:</span> {{ info.date }}
+      </v-card-subtitle>
 
-    <v-card-subtitle class="pa-0 px-4 caption">
-      Todo ID: {{ info.id }}
-    </v-card-subtitle>
+      <v-card-subtitle class="pa-0 px-4 caption">
+        <span class="orange--text">ToDo ID:</span> {{ info.id }}
+      </v-card-subtitle>
+    </v-row>
 
     <v-card-actions>
       <v-btn small text color="error" @click="deleteTodo">

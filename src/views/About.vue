@@ -1,6 +1,10 @@
 <template>
   <div class="about">
-    <h1 class="header-title pointer" @click="$goToRoute('/')">
+    <h1
+      class="header-title pointer"
+      :class="animateEmphasis"
+      @click="$goToRoute('/')"
+    >
       TODO-APP
     </h1>
     <p>Test application</p>
@@ -19,6 +23,18 @@
   </div>
 </template>
 
+<script>
+import { animateEmphasis } from '../constants/index'
+
+export default {
+  name: 'About',
+
+  data: () => ({
+    animateEmphasis: animateEmphasis
+  })
+}
+</script>
+
 <style lang="sass" scoped>
 .about
   width: 100vw
@@ -28,15 +44,15 @@
   justify-content: center
   align-items: center
   font-family: 'special'
+  break-word: break-all
+  padding: 15px
 
 .header-title
-  color: #2196F3
+  background: #2196F3
+  color: white
   border-radius: 40px
   padding: 5px
   margin: 5px
-  font-size: 35px
+  font-size: 30px
   font-family: 'special'
-  &:hover
-    background: #2196F3
-    color: white
 </style>

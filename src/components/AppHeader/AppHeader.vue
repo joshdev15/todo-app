@@ -5,6 +5,7 @@
         <template v-slot:activator="{ on, attrs }">
           <h1
             class="header-title pointer"
+            :class="animateEmphasis"
             @click="$goToRoute(homeRoute)"
             v-on="on"
             v-bind="attrs"
@@ -20,7 +21,7 @@
           :disabled="$route.path !== '/'"
           small
           rounded
-          class="blue white--text mr-1"
+          class="purple white--text mr-1"
           @click="toggleFilter"
         >
           Filter
@@ -76,6 +77,8 @@
 </template>
 
 <script>
+import { animateEmphasis } from '../../constants/index'
+
 export default {
   name: 'AppHeader',
 
@@ -83,7 +86,8 @@ export default {
     content: '',
     homeRoute: '/',
     favoritesRoute: '/favorites',
-    aboutRoute: '/about'
+    aboutRoute: '/about',
+    animateEmphasis: animateEmphasis
   }),
 
   methods: {
@@ -129,15 +133,13 @@ export default {
   width: 100%
 
 .header-title
-  color: #2196F3
+  background: #2196F3
+  color: white
   border-radius: 40px
   padding: 5px
   margin: 5px
   font-size: 20px
   font-family: 'special'
-  &:hover
-    background: #2196F3
-    color: white
 
 .dinamic-container
   width: 100%

@@ -1,22 +1,44 @@
 <template>
-  <div id="app">
+  <v-app>
     <router-view />
-  </div>
+  </v-app>
 </template>
 
-<style lang="sass">
-#app
-  font-family: Avenir, Helvetica, Arial, sans-serif
-  -webkit-font-smoothing: antialiased
-  -moz-osx-font-smoothing: grayscale
-  text-align: center
-  color: #2c3e50
+<script>
+import ls from './services/localStorage'
+import 'animate.css'
 
-#nav
-  padding: 30px
-  a
-    font-weight: bold
-    color: #2c3e50
-    &.router-link-exact-active
-      color: #42b983
+export default {
+  name: 'App',
+
+  mounted() {
+    const existingTodos = JSON.parse(ls.get('allTodos'))
+    if (existingTodos !== null) this.$store.dispatch('setExistingTodos')
+  }
+}
+</script>
+
+<style lang="sass">
+@font-face
+  font-family: 'special'
+  src: url("../src/assets/fonts/MontserratAlternates-Medium.ttf")
+
+*
+  transition: all ease-out 0.3s
+
+*::-webkit-scrollbar
+  width: 7px
+  height: 7px
+
+*::-webkit-scrollbar-thumb
+  background: dodgerblue
+
+*::-webkit-scrollbar-thumb:hover
+  border-radius: 10px
+
+#app
+  background: #dedede
+
+.pointer
+  cursor: pointer !important
 </style>

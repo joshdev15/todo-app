@@ -25,6 +25,7 @@ export default {
 
 *
   transition: all ease-out 0.3s
+  user-select: none !important
 
 *::-webkit-scrollbar
   width: 7px

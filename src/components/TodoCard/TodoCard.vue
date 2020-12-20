@@ -64,7 +64,7 @@
       @click="changeDone"
     ></v-checkbox>
 
-    <v-row justify="space-between pa-0 px-4">
+    <v-row justify="space-between" class="pa-0 px-4">
       <v-card-subtitle class="pa-0 px-4 caption">
         <span class="green--text">Creation date:</span> {{ info.date }}
       </v-card-subtitle>

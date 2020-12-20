@@ -11,12 +11,18 @@ export default {
     $createTodoObject(content) {
       return {
         content: content,
-        date: Date.now(),
+        date: this.$nowDate(),
         favorite: false,
         done: false,
         id: uuid(),
         check: false
       }
+    },
+
+    $nowDate() {
+      const date = new Date(Date.now())
+
+      return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
     }
   }
 }

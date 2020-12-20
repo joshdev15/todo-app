@@ -34,11 +34,10 @@ export default {
   background: dodgerblue
 
 *::-webkit-scrollbar-thumb:hover
-  background: #34699a
   border-radius: 10px
 
 #app
-  background: #e0ecff
+  background: #dedede
 
 .pointer
   cursor: pointer !important

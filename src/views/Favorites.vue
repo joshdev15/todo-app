@@ -1,7 +1,7 @@
 <template>
-  <section class="animateInClass">
+  <section :class="animateInClass">
     <AppHeader />
-    <FavoritesTodos />
+    <FavoritesList />
   </section>
 </template>
 
@@ -9,12 +9,12 @@
 import { animateInClass } from '../constants/index'
 
 export default {
-  name: 'Home',
+  name: 'Favorites',
 
   components: {
     AppHeader: () => import('../../src/components/AppHeader/AppHeader.vue'),
-    FavoritesTodos: () =>
-      import('../../src/components/FavoritesTodos/FavoriteTodos.vue')
+    FavoritesList: () =>
+      import('../../src/components/FavoritesList/FavoriteList.vue')
   },
 
   data: () => ({

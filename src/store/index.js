@@ -14,9 +14,12 @@ export default new Vuex.Store({
   // STATE
   state: {
     todos: [],
-    checker: false,
     todoField: true,
-    filter: false
+    checker: false,
+    filter: false,
+    filterDate: '',
+    filterFavorite: false,
+    filteredTodos: []
   },
 
   // MUTATIONS
@@ -65,12 +68,46 @@ export default new Vuex.Store({
 
     TOGGLE_TODO_FIELD: state => {
       state.todoField = !state.todoField
+      if (state.todoField) {
+        state.checker = false
+      }
+    },
+
+    TOGGLE_FILTER: state => {
+      state.filter = !state.filter
+
+      if (state.filter) {
+        state.filteredTodos = state.todos
+      }
     },
 
     DELETE_BY_GROUP: state => {
       const newTodoList = state.todos.filter(item => item.check === false)
       state.todos = newTodoList
+      state.filteredTodos = newTodoList
       updateTodosInMemory(state)
+    },
+
+    FILTER: (state, filterInfo) => {
+      const dateEmpty = [null, ''].includes(filterInfo.date)
+
+      if (!dateEmpty) {
+        // if date is not empty; filter by date
+        state.filteredTodos = state.todos.filter(todo => {
+          return todo.date === filterInfo.date
+        })
+      } else if (filterInfo.favorite) {
+        // if favorite is true; filter by favorite
+        state.filteredTodos = state.todos.filter(todo => todo.favorite === true)
+      } else if (!dateEmpty && filterInfo.favorite) {
+        // if date is not empty and favorite is true; filter by both values
+        state.filteredTodos = state.todos.filter(
+          todo => todo.date === filterInfo.date && todo.favorite === true
+        )
+      } else {
+        // else
+        state.filteredTodos = state.todos
+      }
     }
   },
 
@@ -102,19 +139,35 @@ export default new Vuex.Store({
       commit('TOGGLE_TODO_FIELD')
     },
 
+    toggleFilter: ({ commit }) => {
+      commit('TOGGLE_FILTER')
+    },
+
     deleteByGroup: ({ commit }) => {
       commit('DELETE_BY_GROUP')
+    },
+
+    filter: ({ commit }, date) => {
+      commit('FILTER', date)
     }
   },
 
   // GETTERS
   getters: {
     allTodos: state => (state.todos.length === 0 ? null : state.todos),
-    favoriteTodos: state =>
-      state.todos.length === 0
-        ? null
-        : state.todos.filter(item => item.favorite === true),
+
+    favoriteTodos: state => {
+      return state.todos.length === 0
+        ? state.todos
+        : state.todos.filter(item => item.favorite === true)
+    },
+
     checkerIsActive: state => state.checker,
-    todoFieldIsActive: state => state.todoField
+
+    todoFieldIsActive: state => state.todoField,
+
+    filterIsActive: state => state.filter,
+
+    filteredTodos: state => state.filteredTodos
   }
 })

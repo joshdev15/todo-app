@@ -5,7 +5,7 @@
         <template v-slot:activator="{ on, attrs }">
           <h1
             class="header-title pointer"
-            @click="$goToRoute('/')"
+            @click="$goToRoute(homeRoute)"
             v-on="on"
             v-bind="attrs"
           >
@@ -16,11 +16,17 @@
       </v-tooltip>
 
       <div class="mb-1">
-        <v-btn small rounded class="blue white--text mr-1">
+        <v-btn
+          :disabled="$route.path !== '/'"
+          small
+          rounded
+          class="blue white--text mr-1"
+          @click="toggleFilter"
+        >
           Filter
         </v-btn>
 
-        <v-btn small rounded class="yellow" @click="$goToRoute('/favorites')">
+        <v-btn small rounded class="yellow" @click="$goToRoute(favoritesRoute)">
           Favorites
         </v-btn>
 
@@ -37,7 +43,7 @@
           small
           rounded
           class="cyan accent-4 white--text ml-1"
-          @click="$goToRoute('/about')"
+          @click="$goToRoute(aboutRoute)"
         >
           About
         </v-btn>
@@ -56,15 +62,16 @@
       Delete all selected
     </v-btn>
 
-    <v-text-field
-      v-if="todoFieldStatus"
-      v-model="content"
-      label="New todo"
-      hint="Enter you todo"
-      persistent-hint
-      clearable
-      outlined
-    />
+    <v-row class="px-4 py-0" v-if="todoFieldStatus">
+      <v-text-field
+        v-model="content"
+        label="New todo"
+        hint="Enter you todo"
+        persistent-hint
+        clearable
+        outlined
+      />
+    </v-row>
   </v-form>
 </template>
 
@@ -73,7 +80,10 @@ export default {
   name: 'AppHeader',
 
   data: () => ({
-    content: ''
+    content: '',
+    homeRoute: '/',
+    favoritesRoute: '/favorites',
+    aboutRoute: '/about'
   }),
 
   methods: {
@@ -86,6 +96,11 @@ export default {
     toggleChecker() {
       this.$store.dispatch('toggleChecker')
       this.$store.dispatch('toggleTodoField')
+    },
+
+    toggleFilter() {
+      console.log('funciona')
+      this.$store.dispatch('toggleFilter')
     },
 
     deleteByGroup() {
@@ -108,8 +123,8 @@ export default {
 <style lang="sass" scoped>
 .app-header
   padding: 15px
-  background: #ffffff90
-  backdrop-filter: blur(20px)
+  background: #ffffffd1
+  backdrop-filter: blur(5px)
   position: fixed
   z-index: 100
   width: 100%
@@ -120,6 +135,7 @@ export default {
   padding: 5px
   margin: 5px
   font-size: 20px
+  font-family: 'special'
   &:hover
     background: #2196F3
     color: white
@@ -129,7 +145,6 @@ export default {
   display: flex
   justify-content: space-between
   align-items: center
-  font-family: 'special'
 
 .field
   border: 2px solid silver

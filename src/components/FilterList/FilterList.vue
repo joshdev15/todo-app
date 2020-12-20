@@ -37,5 +37,9 @@ export default {
 
 @media screen and (max-width: 500px)
   .lista
-    margin-top: 109px
+    margin-top: 207px
+
+@media screen and (max-width: 355px)
+  .lista
+    margin-top: 244px
 </style>

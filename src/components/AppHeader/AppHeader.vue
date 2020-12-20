@@ -99,7 +99,6 @@ export default {
     },
 
     toggleFilter() {
-      console.log('funciona')
       this.$store.dispatch('toggleFilter')
     },
 
@@ -161,6 +160,13 @@ export default {
 @media screen and (max-width: 500px)
   .app-header
     font-size: 25px
+
+  .dinamic-container
+    width: 100%
+    display: flex
+    flex-flow: column
+    justify-content: space-between
+    align-items: center
 
   .field
     font-size: 15px

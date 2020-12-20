@@ -1,6 +1,8 @@
 <template>
   <div class="about">
-    <h1 class="blue--text pointer" @click="$goToRoute('/')">TODO-APP</h1>
+    <h1 class="header-title pointer" @click="$goToRoute('/')">
+      TODO-APP
+    </h1>
     <p>Test application</p>
     <p>In this application the following tools were used</p>
     <ul>
@@ -26,4 +28,15 @@
   justify-content: center
   align-items: center
   font-family: 'special'
+
+.header-title
+  color: #2196F3
+  border-radius: 40px
+  padding: 5px
+  margin: 5px
+  font-size: 35px
+  font-family: 'special'
+  &:hover
+    background: #2196F3
+    color: white
 </style>
